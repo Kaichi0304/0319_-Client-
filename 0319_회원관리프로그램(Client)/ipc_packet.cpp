@@ -30,7 +30,7 @@ PacketInsertMember ipc_pack_InsertMember(HWND hDlg, TCHAR* id, TCHAR* pw, TCHAR*
 PacketSelectMember ipc_pack_SelectMember(HWND hDlg, TCHAR* id)
 {
 	PacketSelectMember packet;
-	packet.flag = PACKET_SELECTMEMBER;
+	packet.flag = PACKET_DELETEMEMBER;
 	packet.hDlg = hDlg;
 	_tcscpy_s(packet.id, _countof(packet.id), id);
 	return packet;

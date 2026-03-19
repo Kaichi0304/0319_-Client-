@@ -29,6 +29,7 @@ void con_SelectMember(HWND hDlg, TCHAR* id)
 
 void con_DeleteMember(HWND hDlg, TCHAR* id)
 {
+	ipc_Delete(hDlg, id);
 	throw TEXT("회원삭제 실패");
 }
 

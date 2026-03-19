@@ -4,8 +4,8 @@
 #define PACKET_LOGIN			1
 #define PACKET_INSERTMEMBER		2
 #define PACKET_SELECTMEMBER		3
-
 #define PACKET_SELECTMEMBER_RETURN 4
+#define PACKET_DELETEMEMBER			5
 
 struct PacketLogIn
 {
