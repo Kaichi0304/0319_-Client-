@@ -44,3 +44,4 @@ PacketLogIn ipc_pack_LogIn(HWND hDlg, TCHAR* id, TCHAR* pw);
 PacketInsertMember ipc_pack_InsertMember(HWND hDlg, TCHAR* id, TCHAR* pw, TCHAR* name, TCHAR* phone);
 
 PacketSelectMember ipc_pack_SelectMember(HWND hDlg,TCHAR* id);
+PacketSelectMember ipc_pack_DeleteMember(HWND hDlg, TCHAR* id);

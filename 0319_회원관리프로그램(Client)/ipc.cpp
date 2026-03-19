@@ -49,7 +49,7 @@ void ipc_Select(HWND hDlg,TCHAR* id)
 }
 void ipc_Delete(HWND hDlg,TCHAR* id)
 {
-	PacketSelectMember packet = ipc_pack_SelectMember(hDlg, id);
+	PacketSelectMember packet = ipc_pack_DeleteMember(hDlg, id);
 	bool b = SendData(&packet, sizeof(packet), packet.flag);
 	if (b == false)
 	{
