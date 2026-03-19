@@ -47,6 +47,15 @@ void ipc_Select(HWND hDlg,TCHAR* id)
 		throw TEXT("회원검색 실패");
 	}
 }
+void ipc_Delete(HWND hDlg,TCHAR* id)
+{
+	PacketSelectMember packet = ipc_pack_SelectMember(hDlg, id);
+	bool b = SendData(&packet, sizeof(packet), packet.flag);
+	if (b == false)
+	{
+		throw TEXT("회원삭제 실패");
+	}
+}
 
 INT_PTR OnCopyData(HWND hDlg, WPARAM wParam, LPARAM lParam)
 {

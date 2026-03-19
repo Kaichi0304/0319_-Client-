@@ -7,5 +7,5 @@ bool SendData(void* packet, int size, int flag);
 void ipc_LogIn(HWND hDlg, TCHAR* id, TCHAR* pw);
 void ipc_InsertMember(HWND hDlg, TCHAR* id, TCHAR* pw, TCHAR* name, TCHAR* phone);
 void ipc_Select(HWND hDlg, TCHAR* id);
-
+void ipc_Delete(HWND hDlg, TCHAR* id);
 INT_PTR OnCopyData(HWND hDlg, WPARAM wParam, LPARAM lParam);
