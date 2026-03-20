@@ -1,7 +1,7 @@
 ﻿//ui_printall.cpp
 #include "std.h"
 
-vector<MEMBER*> members;
+
 
 HWND hprint_listbox, hprint_btn_list;
 
