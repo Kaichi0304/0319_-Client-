@@ -1,14 +1,24 @@
 //ipc_packet.h
 #pragma once
+#define PACKET_SELECTMEMBER_RETURN		7
+#define PACKET_LOGIN					1
+#define PACKET_INSERTMEMBER				2
+#define PACKET_SELECTMEMBER				3
+#define PACKET_DELETEMEMBER				4
+#define PACKET_UPDATEMEMBER				5
+#define PACKET_GETMEMBERLIST			6
+//Server -> Client
+#define PACKET_INSERTMEMBER_ACK			11
+#define PACKET_DELETEMEMBER_ACK			12
+#define PACKET_UPDATEMEMBER_ACK			13
+#define PACKET_LOGINMEMBER_ACK			14
+#define PACKET_SELECTMEMBER_ACK			15
+#define PACKET_GETMEMBERLIST_ACK		16
 
-#define PACKET_LOGIN			1
-#define PACKET_INSERTMEMBER		2
-#define PACKET_SELECTMEMBER		3
-#define PACKET_SELECTMEMBER_RETURN 4
-#define PACKET_DELETEMEMBER			5
-#define PACKET_UPDATEMEMBER 6
-#define PACKET_GETMEMBERLIST		7
 
+
+
+//Client -> Server
 struct PacketLogIn
 {
 	int flag;
@@ -16,7 +26,6 @@ struct PacketLogIn
 	TCHAR id[20];
 	TCHAR pw[20];
 };
-
 struct PacketInsertMember
 {
 	int flag;
@@ -26,7 +35,6 @@ struct PacketInsertMember
 	TCHAR name[20];
 	TCHAR phone[20];
 };
-
 struct PacketSelectMember
 {
 	int flag;
@@ -34,7 +42,6 @@ struct PacketSelectMember
 	TCHAR id[20];
 };
 typedef struct PacketSelectMember PacketDeleteMember;
-
 struct PacketUpdateMember
 {
 	int flag;
@@ -42,19 +49,39 @@ struct PacketUpdateMember
 	TCHAR id[20];
 	TCHAR phone[20];
 };
-struct PacketSelectMemberReturn
-{
-	int flag;
-	HWND hDlg;
-	TCHAR pw[20];
-	TCHAR name[20];
-	TCHAR phone[20];
-};
 struct PacketGetMemberList
 {
 	int flag;
 	HWND hDlg;
+	
+};
+
+//Server -> Client
+struct PacketInsertMemberAck
+{
+	int flag;
+	bool result;
 	TCHAR id[20];
+
+};
+typedef struct PacketInsertMemberAck PacketDeleteMemberAck;
+typedef struct PacketInsertMemberAck PacketUpdateMemberAck;
+struct PacketLogInMemberAck
+{
+	int flag;
+	HWND hDlg;
+	bool result;
+	TCHAR id[20];
+	TCHAR pw[20];
+	TCHAR name[20];
+	TCHAR phone[20];
+};
+typedef struct PacketLogInMemberAck PacketSelectMemberAck;
+struct PacketGetMemberListAck
+{
+	int flag;
+	int size;
+	MEMBER members[20];
 };
 
 PacketLogIn ipc_pack_LogIn(HWND hDlg, TCHAR* id, TCHAR* pw);

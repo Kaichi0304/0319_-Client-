@@ -6,4 +6,5 @@ void ui_login_Invoke(HWND hDlg);
 
 void login_data_check(TCHAR* id, TCHAR* pw);
 
+void ui_login_Ack(PacketLogInMemberAck* pdata);
 

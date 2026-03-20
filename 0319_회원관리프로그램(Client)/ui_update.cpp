@@ -23,7 +23,7 @@ void ui_update_Invkoe(HWND hDlg)
 		update_data_check(id, phone);
 		con_UpdateMember(hDlg, id, phone);
 
-		SetWindowText(hupdate_static_msg, TEXT("회원 검색 성공"));
+		
 	}
 	catch (const TCHAR* msg)
 	{
@@ -35,4 +35,16 @@ void update_data_check(TCHAR* id, TCHAR* phone)
 {
 	if (_tcslen(id) == 0 || _tcslen(phone) == 0)
 		throw TEXT("모든 정보를 입력하세요");
+}
+
+void ui_update_Ack(PacketUpdateMemberAck* pdata)
+{
+	if (pdata->result == true)
+	{
+		SetWindowText(hupdate_static_msg, TEXT("전화번호 수정 성공"));
+	}
+	else
+	{
+		SetWindowText(hupdate_static_msg, TEXT("전화번호 수정 실패"));
+	}
 }

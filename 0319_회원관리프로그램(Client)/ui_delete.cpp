@@ -19,17 +19,26 @@ void ui_delete_Invoke(HWND hDlg)
 	{
 		delete_data_check(id);
 		con_DeleteMember(hDlg, id);
-
-		SetWindowText(hdelete_static_msg, TEXT("회원삭제 성공"));
 	}
 	catch (const TCHAR* msg)
 	{
 		SetWindowText(hdelete_static_msg, msg);
 	}
 }
-
 void delete_data_check(TCHAR* id)
 {
 	if (_tcslen(id) == 0)
 		throw TEXT("모든 정보를 입력하세요");
+}
+void ui_delete_Ack(PacketDeleteMemberAck* pdata)
+{
+	if (pdata->result == true)
+	{
+		SetWindowText(hdelete_static_msg, TEXT("회원삭제 성공"));
+	}
+	else
+	{
+		SetWindowText(hdelete_static_msg, TEXT("회원삭제 실패"));
+	}
+	
 }

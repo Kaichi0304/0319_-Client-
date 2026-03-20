@@ -21,11 +21,8 @@ void ui_login_Invoke(HWND hDlg)
 		login_data_check(id, pw);
 		con_LogIn(hDlg, id, pw);
 
-		SetWindowText(hlogin_static_msg, TEXT("로그인 성공"));
-
 		SetWindowText(hlogin_edit_id, TEXT(""));
 		SetWindowText(hlogin_edit_pw, TEXT(""));
-		
 
 
 	}
@@ -39,6 +36,16 @@ void login_data_check(TCHAR* id, TCHAR* pw)
 {
 	if (_tcslen(id) == 0 || _tcslen(pw) == 0)
 		throw TEXT("모든 정보를 입력하세요");
+}
+void ui_login_Ack(PacketLogInMemberAck* pdata)
+{
+	if (pdata->result == true)
+		SetWindowText(hlogin_static_msg, TEXT("로그인 성공"));
+	//~님이 로그인했습니다 기능 추가할것
+
+	else
+		SetWindowText(hlogin_static_msg, TEXT("로그인 실패"));
+	
 }
 
 

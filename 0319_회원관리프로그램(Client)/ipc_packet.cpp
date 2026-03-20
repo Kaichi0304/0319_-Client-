@@ -62,7 +62,5 @@ PacketGetMemberList ipc_pack_GetMemberList(HWND hDlg)
 	PacketGetMemberList packet;
 	packet.flag = PACKET_GETMEMBERLIST;
 	packet.hDlg = hDlg;
-	
-
 	return packet;
 }

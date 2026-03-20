@@ -24,8 +24,6 @@ void ui_select_Invoke(HWND hDlg)
 	{
 		select_data_check(id);
 		con_SelectMember(hDlg, id);
-
-		SetWindowText(hselect_static_msg, TEXT("회원 검색 성공"));
 	}
 	catch (const TCHAR* msg)
 	{
@@ -52,14 +50,24 @@ void ui_select_CheckBox_Invoke(HWND hDlg)
 		SetFocus(hselect_edit_pw);
 	}	
 }
-void Select_Return(HWND hDlg, PacketSelectMemberReturn* pdata)
+
+void ui_select_Ack(PacketSelectMemberAck* pdata)
 {
-	
-	SetWindowText(hselect_edit_pw, pdata->pw);
-	SetWindowText(hselect_edit_name, pdata->name);
-	SetWindowText(hselect_edit_phone, pdata->phone);
-	TCHAR buf[20];
-	wsprintf(buf, TEXT("회원 검색 성공"));
-	SetWindowText(hselect_static_msg, buf);
-	
+
+	if (pdata->result == true)
+	{
+		SetWindowText(hselect_edit_pw, pdata->pw);
+		SetWindowText(hselect_edit_name, pdata->name);
+		SetWindowText(hselect_edit_phone, pdata->phone);
+
+		SetWindowText(hselect_static_msg, TEXT("회원 검색 성공"));
+	}
+	else
+	{
+		SetWindowText(hselect_edit_pw, pdata->pw);
+		SetWindowText(hselect_edit_name, pdata->name);
+		SetWindowText(hselect_edit_phone, pdata->phone);
+		SetWindowText(hselect_static_msg, TEXT("회원 검색 실패"));
+	}
+
 }

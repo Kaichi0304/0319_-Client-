@@ -30,3 +30,9 @@ INT_PTR OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
 	}
 	return 0;
 }
+INT_PTR OnCopyData(HWND hDlg, WPARAM wParam, LPARAM lParam)
+{
+	con_RecvData(hDlg, (COPYDATASTRUCT*)lParam);
+
+	return TRUE;
+}

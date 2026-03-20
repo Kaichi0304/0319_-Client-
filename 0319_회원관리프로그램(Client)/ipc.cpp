@@ -3,7 +3,7 @@
 
 #define SERVER_NAME   TEXT("회원관리서버")
 
-bool SendData(void* packet, int size, int flag)
+void SendData(void* packet, int size, int flag)
 {
 	HWND hTarget = FindWindow(0, SERVER_NAME);
 	if (hTarget == 0)
@@ -15,62 +15,47 @@ bool SendData(void* packet, int size, int flag)
 	cs.dwData = flag;			//내 맘대로
 
 	SendMessage(hTarget, WM_COPYDATA, 0, (LPARAM)&cs);
-	return true;
+	
 }
 
 void ipc_LogIn(HWND hDlg, TCHAR* id, TCHAR* pw)
 {
 	PacketLogIn packet = ipc_pack_LogIn(hDlg, id, pw);
-	bool b = SendData(&packet, sizeof(packet), packet.flag);
-	if (b == false)
-	{
-		throw TEXT("로그인 실패");
-	}
+	SendData(&packet, sizeof(packet), packet.flag);
+	
 }
 
 void ipc_InsertMember(HWND hDlg, TCHAR* id, TCHAR* pw, TCHAR* name, TCHAR* phone)
 {
 	PacketInsertMember packet =  ipc_pack_InsertMember(hDlg, id, pw, name, phone);
 
-	bool b = SendData(&packet, sizeof(packet), packet.flag);
-	if (b == false)
-	{
-		throw TEXT("회원가입 실패");
-	}
+	SendData(&packet, sizeof(packet), packet.flag);
+	
 }
 void ipc_SelectMember(HWND hDlg,TCHAR* id)
 {
 	PacketSelectMember packet = ipc_pack_SelectMember(hDlg, id);
-	bool b = SendData(&packet, sizeof(packet), packet.flag);
-	if (b == false)
-	{
-		throw TEXT("회원검색 실패");
-	}
+	SendData(&packet, sizeof(packet), packet.flag);
+	
 }
 void ipc_DeleteMember(HWND hDlg,TCHAR* id)
 {
 	PacketDeleteMember packet = ipc_pack_DeleteMember(hDlg, id);
-	bool b = SendData(&packet, sizeof(packet), packet.flag);
-	if (b == false)
-	{
-		throw TEXT("회원삭제 실패");
-	}
+	SendData(&packet, sizeof(packet), packet.flag);
+	
 }
 void ipc_UpdateMember(HWND hDlg, TCHAR* id, TCHAR* phone)
 {
 	PacketUpdateMember packet = ipc_pack_UpdateMember(hDlg, id,phone);
-	bool b = SendData(&packet, sizeof(packet), packet.flag);
-	if (b == false)
-	{
-		throw TEXT("회원삭제 실패");
-	}
+	SendData(&packet, sizeof(packet), packet.flag);
+	
 
 }
 
-INT_PTR OnCopyData(HWND hDlg, WPARAM wParam, LPARAM lParam)
+void ipc_GetMemberList(HWND hDlg)		//여기수정
 {
-	con_RecvData(hDlg, (COPYDATASTRUCT*)lParam);
-
-	return TRUE;
+	PacketGetMemberList packet = ipc_pack_GetMemberList(hDlg);
+	SendData(&packet, sizeof(packet), packet.flag);
+	
 }
 
