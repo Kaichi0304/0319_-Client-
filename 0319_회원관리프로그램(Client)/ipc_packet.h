@@ -6,6 +6,8 @@
 #define PACKET_SELECTMEMBER		3
 #define PACKET_SELECTMEMBER_RETURN 4
 #define PACKET_DELETEMEMBER			5
+#define PACKET_UPDATEMEMBER 6
+#define PACKET_GETMEMBERLIST		7
 
 struct PacketLogIn
 {
@@ -31,6 +33,15 @@ struct PacketSelectMember
 	HWND hDlg;
 	TCHAR id[20];
 };
+typedef struct PacketSelectMember PacketDeleteMember;
+
+struct PacketUpdateMember
+{
+	int flag;
+	HWND hDlg;
+	TCHAR id[20];
+	TCHAR phone[20];
+};
 struct PacketSelectMemberReturn
 {
 	int flag;
@@ -39,9 +50,19 @@ struct PacketSelectMemberReturn
 	TCHAR name[20];
 	TCHAR phone[20];
 };
+struct PacketGetMemberList
+{
+	int flag;
+	HWND hDlg;
+	TCHAR id[20];
+};
 
 PacketLogIn ipc_pack_LogIn(HWND hDlg, TCHAR* id, TCHAR* pw);
 PacketInsertMember ipc_pack_InsertMember(HWND hDlg, TCHAR* id, TCHAR* pw, TCHAR* name, TCHAR* phone);
 
 PacketSelectMember ipc_pack_SelectMember(HWND hDlg,TCHAR* id);
-PacketSelectMember ipc_pack_DeleteMember(HWND hDlg, TCHAR* id);
+PacketDeleteMember ipc_pack_DeleteMember(HWND hDlg, TCHAR* id);
+
+PacketUpdateMember ipc_pack_UpdateMember(HWND hDlg, TCHAR* id, TCHAR* phone);
+
+PacketGetMemberList ipc_pack_GetMemberList(HWND hDlg);

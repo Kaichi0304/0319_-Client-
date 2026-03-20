@@ -38,7 +38,7 @@ void ipc_InsertMember(HWND hDlg, TCHAR* id, TCHAR* pw, TCHAR* name, TCHAR* phone
 		throw TEXT("회원가입 실패");
 	}
 }
-void ipc_Select(HWND hDlg,TCHAR* id)
+void ipc_SelectMember(HWND hDlg,TCHAR* id)
 {
 	PacketSelectMember packet = ipc_pack_SelectMember(hDlg, id);
 	bool b = SendData(&packet, sizeof(packet), packet.flag);
@@ -47,14 +47,24 @@ void ipc_Select(HWND hDlg,TCHAR* id)
 		throw TEXT("회원검색 실패");
 	}
 }
-void ipc_Delete(HWND hDlg,TCHAR* id)
+void ipc_DeleteMember(HWND hDlg,TCHAR* id)
 {
-	PacketSelectMember packet = ipc_pack_DeleteMember(hDlg, id);
+	PacketDeleteMember packet = ipc_pack_DeleteMember(hDlg, id);
 	bool b = SendData(&packet, sizeof(packet), packet.flag);
 	if (b == false)
 	{
 		throw TEXT("회원삭제 실패");
 	}
+}
+void ipc_UpdateMember(HWND hDlg, TCHAR* id, TCHAR* phone)
+{
+	PacketUpdateMember packet = ipc_pack_UpdateMember(hDlg, id,phone);
+	bool b = SendData(&packet, sizeof(packet), packet.flag);
+	if (b == false)
+	{
+		throw TEXT("회원삭제 실패");
+	}
+
 }
 
 INT_PTR OnCopyData(HWND hDlg, WPARAM wParam, LPARAM lParam)

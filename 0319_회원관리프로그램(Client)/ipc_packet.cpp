@@ -33,13 +33,36 @@ PacketSelectMember ipc_pack_SelectMember(HWND hDlg, TCHAR* id)
 	packet.flag = PACKET_SELECTMEMBER;
 	packet.hDlg = hDlg;
 	_tcscpy_s(packet.id, _countof(packet.id), id);
+
 	return packet;
 }
-PacketSelectMember ipc_pack_DeleteMember(HWND hDlg, TCHAR* id)
+PacketDeleteMember ipc_pack_DeleteMember(HWND hDlg, TCHAR* id)
 {
-	PacketSelectMember packet;
-	packet.flag = PACKET_SELECTMEMBER;
+	PacketDeleteMember packet;
+	packet.flag = PACKET_DELETEMEMBER;
 	packet.hDlg = hDlg;
 	_tcscpy_s(packet.id, _countof(packet.id), id);
+	return packet;
+}
+
+PacketUpdateMember ipc_pack_UpdateMember(HWND hDlg, TCHAR* id, TCHAR* phone)
+{
+	PacketUpdateMember packet;
+	packet.flag = PACKET_UPDATEMEMBER;
+	packet.hDlg = hDlg;
+	_tcscpy_s(packet.id, _countof(packet.id), id);
+	_tcscpy_s(packet.phone, _countof(packet.phone), phone);
+
+	return packet;
+
+
+}
+PacketGetMemberList ipc_pack_GetMemberList(HWND hDlg)
+{
+	PacketGetMemberList packet;
+	packet.flag = PACKET_GETMEMBERLIST;
+	packet.hDlg = hDlg;
+	
+
 	return packet;
 }

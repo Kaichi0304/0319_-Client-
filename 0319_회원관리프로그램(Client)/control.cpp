@@ -23,18 +23,23 @@ void con_InsertMember(HWND hDlg, TCHAR* id, TCHAR* pw, TCHAR* name, TCHAR* phone
 
 void con_SelectMember(HWND hDlg, TCHAR* id)
 {
-	ipc_Select(hDlg, id);
+	ipc_SelectMember(hDlg, id);
 	
 }
 
 void con_DeleteMember(HWND hDlg, TCHAR* id)
 {
-	ipc_Delete(hDlg, id);
+	ipc_DeleteMember(hDlg, id);
 	throw TEXT("회원삭제 실패");
 }
 
 void con_UpdateMember(HWND hDlg, TCHAR* id, TCHAR* phone)
 {
+	ipc_UpdateMember(hDlg, id, phone);
 	throw TEXT("전화번호 변경 실패");
+}
+void con_GetMember(HWND hDlg, TCHAR* id, TCHAR* phone)
+{
+
 }
 

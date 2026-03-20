@@ -9,3 +9,5 @@ void con_SelectMember(HWND hDlg, TCHAR* id);
 void con_DeleteMember(HWND hDlg, TCHAR* id);
 void con_UpdateMember(HWND hDlg, TCHAR* id, TCHAR* phone);
 
+void con_GetMember(HWND hDlg, TCHAR* id, TCHAR* phone);
+
