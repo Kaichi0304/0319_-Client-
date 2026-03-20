@@ -34,10 +34,12 @@ void ui_delete_Ack(PacketDeleteMemberAck* pdata)
 {
 	if (pdata->result == true)
 	{
+		SetWindowText(hdelete_edit_id, TEXT(""));
 		SetWindowText(hdelete_static_msg, TEXT("회원삭제 성공"));
 	}
 	else
 	{
+		SetWindowText(hdelete_edit_id, TEXT(""));
 		SetWindowText(hdelete_static_msg, TEXT("회원삭제 실패"));
 	}
 	
