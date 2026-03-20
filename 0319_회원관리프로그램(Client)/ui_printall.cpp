@@ -24,6 +24,8 @@ void ui_getlist_Ack(PacketGetMemberListAck* pdata)
 		TCHAR buf[100];
 		wsprintf(buf, TEXT("ID: %s \t 이름: %s \t 전화: %s"), member.id, member.name, member.phone);	//비번은 제외
 		SendMessage(hprint_listbox, LB_ADDSTRING, 0, (LPARAM)buf);
+		
+		
 	}
 	
 }

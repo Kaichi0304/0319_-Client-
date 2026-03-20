@@ -45,6 +45,7 @@ void ui_update_Ack(PacketUpdateMemberAck* pdata)
 	}
 	else
 	{
+
 		SetWindowText(hupdate_static_msg, TEXT("전화번호 수정 실패"));
 	}
 }
